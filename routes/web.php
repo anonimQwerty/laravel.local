@@ -15,3 +15,13 @@ use App\Http\Controllers\mainController;
 */
 
 Route::get('/', [mainController::class, 'index']);
+Route::get('/blog', [mainController::class, 'blog']);
+Route::get('/page', [mainController::class, 'page']);
+Route::get('/page-elements', [mainController::class, 'page_elements']);
+Route::get('/page-icons', [mainController::class, 'page_icons']);
+Route::get('/portfolio', [mainController::class, 'portfolio']);
+Route::get('/contact', [mainController::class, 'contact']);
+
+Route::post('/form', [mainController::class, 'form_handler']);
+
+Route::get('/blog/{id}', [mainController::class, 'show_article']);

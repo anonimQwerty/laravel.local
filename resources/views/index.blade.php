@@ -1,8 +1,4 @@
-<x-header>
-    <x-slot:active>
-        {{$activemain}}
-    </x-slot>
-</x-header>
+@include('components.header', ['active' => $activemain])
 <!-- slider holder -->
                 <div class="clearfix"></div>
                 <div id="slider-holder" class="clearfix">
@@ -55,59 +51,19 @@
                     
                     <!-- thumbs -->
                     <div class="clearfix" >
+
+                        @for($i=1;$i<=9;$i++)
                         
-                        <figure>
-                            <a href="single.html"  class="thumb"><img src="img/dummies/featured-1.jpg" alt="Alt text" /></a>
-                            <figcaption>
-                                <strong>Pellentesque habitant morbi</strong>
-                                <span>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae.</span>
-                            </figcaption>
-                        </figure>
+                        <x-work_card></x-work_card>
+
+                        @endfor
                         
-                        <figure>
-                            <a href="single.html"  class="thumb"><img src="img/dummies/featured-2.jpg" alt="Alt text" /></a>
-                            <figcaption>
-                                <strong>Pellentesque habitant morbi</strong>
-                                <span>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae.</span>
-                            </figcaption>
-                        </figure>
-                        
-                        <figure>
-                            <a href="single.html"  class="thumb"><img src="img/dummies/featured-3.jpg" alt="Alt text" /></a>
-                            <figcaption>
-                                <strong>Pellentesque habitant morbi</strong>
-                                <span>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae.</span>
-                            </figcaption>
-                        </figure>
-                        
-                        <figure>
-                            <a href="single.html"  class="thumb"><img src="img/dummies/featured-1.jpg" alt="Alt text" /></a>
-                            <figcaption>
-                                <strong>Pellentesque habitant morbi</strong>
-                                <span>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae.</span>
-                            </figcaption>
-                        </figure>
-                        
-                        <figure>
-                            <a href="single.html"  class="thumb"><img src="img/dummies/featured-3.jpg" alt="Alt text" /></a>
-                            <figcaption>
-                                <strong>Pellentesque habitant morbi</strong>
-                                <span>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae.</span>
-                            </figcaption>
-                        </figure>
-                        
-                        <figure>
-                            <a href="single.html"  class="thumb"><img src="img/dummies/featured-2.jpg" alt="Alt text" /></a>
-                            <figcaption>
-                                <strong>Pellentesque habitant morbi</strong>
-                                <span>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae.</span>
-                            </figcaption>
-                        </figure>
+                       
                         
                     </div>
                     <!-- ENDS thumbs -->
                     
-                    <a href="work.html" class="theme-link-button">See All Work</a>
+                    <a href="work" class="theme-link-button">See All Work</a>
                     
                 </div>
                 <!-- ENDS home-block -->
@@ -117,43 +73,21 @@
                 <div class="home-add clearfix">
                     
                     <!-- left -->
+
                     <div class="left-home-block home-posts">
                         <h4 class="heading">FROM THE BLOG</h4>
-                        <article class="format-standard">
-                            <div class="entry-date"><div class="number">23</div><div class="month">JAN</div> <div class="year">2011</div><em></em></div>
-                            <div  class="post-heading">
-                                <h4><a href="single.html">Lorem ipsum dolor </a></h4>
-                            </div>
-                            <div class="excerpt">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae.
-                            </div>
-                        </article>
-                        
-                        <article class="format-standard">
-                            <div class="entry-date"><div class="number">23</div><div class="month">JAN</div> <div class="year">2011</div><em></em></div>
-                            <div  class="post-heading">
-                                <h4><a href="single.html">Lorem ipsum dolor </a></h4>
-                            </div>
-                            <div class="excerpt">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae.
-                            </div>
-                        </article>
-                        
-                        <article class="format-standard">
-                            <div class="entry-date"><div class="number">23</div><div class="month">JAN</div> <div class="year">2011</div><em></em></div>
-                            <div  class="post-heading">
-                                <h4><a href="single.html">Lorem ipsum dolor </a></h4>
-                            </div>
-                            <div class="excerpt">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae.
-                            </div>
-                        </article>
-                        
-                        <article class="format-standard">
-                            <div class="entry-date"><div class="number">23</div><div class="month">JAN</div> <div class="year">2011</div><em></em></div>
-                            <div  class="post-heading">
-                                <h4><a href="single.html">Lorem ipsum dolor </a></h4>
-                            </div>
-                            <div class="excerpt">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae.
-                            </div>
-                        </article>
+                    @foreach($articles as $article)
+                    <x-from_the_blog>
+                        <x-slot:artid>{{$article->id}}</x-slot>
+                        <x-slot:title>{{$article->title}}</x-slot>
+                        <x-slot:preview>{{\Illuminate\Support\Str::limit($article->text, 200, $end='...')}}</x-slot>
+
+                        <x-slot:post_date>
+                            {{$article->created_at}}
+                        </x-slot>
+
+                    </x-from_the_blog>
+                    @endforeach
                         
                         
                     </div>
